@@ -7,7 +7,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Getter
 @Setter
@@ -35,7 +38,7 @@ public class Rook extends Pieces {
         List<Coordinates> availableXMoves = new ArrayList<Coordinates>();
         List<Coordinates> availableYMoves = new ArrayList<Coordinates>();
 
-        for(int i = 0; i < 7; i++){
+        for(int i = 0; i < 8; i++){
             if(super.getY() != i){
                 availableYMoves.add(new Coordinates(super.getX(),i));
             }
@@ -50,10 +53,11 @@ public class Rook extends Pieces {
     public  AvailableRooks verifyAvailability(ChessBoard chess){
         AvailableRooks availableRooks = availableAllShots();
         List<Coordinates> tmp = new ArrayList<Coordinates>();
-        List<Coordinates> availableXMoves = availableRooks.getAvailableX();
-        List<Coordinates> availableYMoves = availableRooks.getAvailableY();
+        List<Coordinates> availableXMoves = new ArrayList<Coordinates>(availableRooks.getAvailableX());
+        List<Coordinates> availableYMoves = new ArrayList<Coordinates>(availableRooks.getAvailableY());
 
         for(Coordinates coord : availableRooks.getAvailableX()){
+            if(chess.getChessBoard()[coord.getX()][coord.getY()] == this) tmp.clear();
             if(chess.getChessBoard()[coord.getX()][coord.getY()] != null){
                 tmp.add(coord);
                 availableXMoves.removeAll(tmp);
@@ -65,6 +69,7 @@ public class Rook extends Pieces {
         tmp.clear();
 
         for(Coordinates coord : availableRooks.getAvailableY()){
+            if(chess.getChessBoard()[coord.getX()][coord.getY()] == this) tmp.clear();
             if(chess.getChessBoard()[coord.getX()][coord.getY()] != null){
                 tmp.add(coord);
                 availableYMoves.removeAll(tmp);
