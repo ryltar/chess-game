@@ -60,6 +60,7 @@ public class Rook extends Pieces {
         return new AvailableRooks(availableXDownMoves, availableXUpMoves, availableYLeftMoves, availableYRightMoves );
     }
 
+
     @Override
     public  AvailableRooks verifyAvailability(ChessBoard chess){
         AvailableRooks availableRooks = availableAllShots();

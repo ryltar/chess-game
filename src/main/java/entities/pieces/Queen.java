@@ -22,7 +22,7 @@ public class Queen extends Pieces {
     };
 
     @Override
-    public AvailablePawns availableAllShots(){
+    public AvailablePawns availableAllShots() {
         return null;
     }
 

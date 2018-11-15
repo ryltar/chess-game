@@ -6,7 +6,6 @@ import entities.pieces.availables.AvailablePawns;
 import entities.tools.TransversalMethod;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.Iterator;
 
 @Getter

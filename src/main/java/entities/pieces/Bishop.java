@@ -6,7 +6,6 @@ import entities.pieces.availables.AvailableBishops;
 import entities.tools.TransversalMethod;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.List;
 
 @Getter
@@ -67,6 +66,7 @@ public class Bishop extends Pieces {
         List<Coordinates> availableHighRightDiagonals = super.iterateOverEachDirectionAndVerify(availableAllShots().getAvailableHighRightDiagonal(), chess);
         availableBishops.setAllBishops(availableBishops.fusion(availableLowLeftDiagonals, availableHighLeftDiagonals,
                 availableLowRightDiagonals, availableHighRightDiagonals));
+
         return availableBishops;
     }
 

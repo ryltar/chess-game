@@ -68,8 +68,8 @@ public class ChessBoard {
             {whitePieces.get(0), whitePieces.get(1), whitePieces.get(2), whitePieces.get(3),
                     whitePieces.get(4), whitePieces.get(5), whitePieces.get(6), whitePieces.get(7)},
             {whitePieces.get(8), whitePieces.get(9), whitePieces.get(10), whitePieces.get(11),
-                    whitePieces.get(12), whitePieces.get(13), whitePieces.get(14), whitePieces.get(15)}
-    };
+                    whitePieces.get(12), whitePieces.get(13), whitePieces.get(14), whitePieces.get(15)}};
+
 
     public void printChessBoard(){
         System.out.println(" ---------------------------------");

@@ -20,7 +20,7 @@ public abstract class Pieces {
     private Class currentClass;
     private Coordinates coordinates;
 
-    Pieces(boolean color, Coordinates coordinates){
+    Pieces(boolean color, Coordinates coordinates) {
         this.color = color;
         this.coordinates = coordinates;
     }
