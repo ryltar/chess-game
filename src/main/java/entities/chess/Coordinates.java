@@ -9,13 +9,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(of={"x","y"})
-public class Coordinates {
+public class Coordinates implements Cloneable {
     private int x;
     private int y;
 
     @Override
     public String toString(){
         return "("+this.x+","+this.y+")";
+    }
+
+    @Override
+    public Coordinates clone() throws CloneNotSupportedException {
+        return (Coordinates) super.clone();
     }
 
 }

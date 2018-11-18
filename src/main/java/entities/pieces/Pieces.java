@@ -1,13 +1,12 @@
 package entities.pieces;
 
 import entities.chess.ChessBoard;
-import entities.pieces.availables.Coordinates;
+import entities.chess.Coordinates;
 import entities.pieces.availables.AvailablePieces;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.List;
 
 @Getter
@@ -19,10 +18,12 @@ public abstract class Pieces {
     private String unicode;
     private Class currentClass;
     private Coordinates coordinates;
+    private String name;
 
-    Pieces(boolean color, Coordinates coordinates) {
+    Pieces(boolean color, Coordinates coordinates, String name) {
         this.color = color;
         this.coordinates = coordinates;
+        this.name = name;
     }
 
     public String toString(){
@@ -35,7 +36,7 @@ public abstract class Pieces {
 
     public abstract AvailablePieces  availableAllShots();
 
-    void movePieces(Coordinates coordinates, ChessBoard chess){
+    public void movePieces(Coordinates coordinates, ChessBoard chess){
         chess.getChessBoard()[coordinates.getX()][coordinates.getY()] = chess.getChessBoard()[this.coordinates.getX()][this.coordinates.getY()];
         chess.getChessBoard()[this.coordinates.getX()][this.coordinates.getY()] = null;
         this.coordinates.setX(coordinates.getX());

@@ -16,43 +16,43 @@ import java.util.List;
 public class ChessBoard {
     private List<Pieces> blackPieces = new ArrayList<Pieces>(){
         {
-            add(new Rook(false, 0, 0));
-            add(new Knight(false, 0, 1));
-            add(new Bishop(false, 0,2));
-            add(new Queen(false,0,3));
-            add(new King(false,0,4));
-            add(new Bishop(false,0,5));
-            add(new Knight(false,0,6));
-            add(new Rook(false,0,7));
-            add(new Pawn(false,1,0));
-            add(new Pawn(false,1,1));
-            add(new Pawn(false,1,2));
-            add(new Pawn(false,1,3));
-            add(new Pawn(false,1,4));
-            add(new Pawn(false,1,5));
-            add(new Pawn(false,1,6));
-            add(new Pawn(false,1,7));
+            add(new Rook(false, 0, 0, "BR1"));
+            add(new Knight(false, 0, 1, "BN1"));
+            add(new Bishop(false, 0,2, "BB1"));
+            add(new Queen(false,0,3, "BQ"));
+            add(new King(false,0,4, "BK"));
+            add(new Bishop(false,0,5, "BB2"));
+            add(new Knight(false,0,6, "BN2"));
+            add(new Rook(false,0,7, "BR2"));
+            add(new Pawn(false,1,0, "BP1"));
+            add(new Pawn(false,1,1, "BP2"));
+            add(new Pawn(false,1,2, "BP3"));
+            add(new Pawn(false,1,3, "BP4"));
+            add(new Pawn(false,1,4, "BP5"));
+            add(new Pawn(false,1,5, "BP6"));
+            add(new Pawn(false,1,6, "BP7"));
+            add(new Pawn(false,1,7, "BP8"));
         }
     };
 
     private List<Pieces> whitePieces = new ArrayList<Pieces>(){
         {
-            add(new Pawn(true,6,0));
-            add(new Pawn(true,6,1));
-            add(new Pawn(true,6,2));
-            add(new Pawn(true,6,3));
-            add(new Pawn(true,6,4));
-            add(new Pawn(true,6,5));
-            add(new Pawn(true,6,6));
-            add(new Pawn(true,6,7));
-            add(new Rook(true, 7, 0));
-            add(new Knight(true,7,1));
-            add(new Bishop(true, 7,2));
-            add(new Queen(true,7,3));
-            add(new King(true,7,4));
-            add(new Bishop(true,7,5));
-            add(new Knight(true,7,6));
-            add(new Rook(true,7,7));
+            add(new Pawn(true,6,0, "WP1"));
+            add(new Pawn(true,6,1, "WP2"));
+            add(new Pawn(true,6,2, "WP3"));
+            add(new Pawn(true,6,3, "WP4"));
+            add(new Pawn(true,6,4, "WP5"));
+            add(new Pawn(true,6,5, "WP6"));
+            add(new Pawn(true,6,6, "WP7"));
+            add(new Pawn(true,6,7, "WP8"));
+            add(new Rook(true, 7, 0, "WR1"));
+            add(new Knight(true,7,1, "WN1"));
+            add(new Bishop(true, 7,2, "WB1"));
+            add(new Queen(true,7,3, "WQ"));
+            add(new King(true,7,4, "WK"));
+            add(new Bishop(true,7,5, "WB2"));
+            add(new Knight(true,7,6, "WN2"));
+            add(new Rook(true,7,7, "WR2"));
         }
     };
 

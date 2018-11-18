@@ -1,7 +1,7 @@
 package entities.pieces;
 
 import entities.chess.ChessBoard;
-import entities.pieces.availables.Coordinates;
+import entities.chess.Coordinates;
 import entities.pieces.availables.AvailableBishops;
 import entities.tools.TransversalMethod;
 import lombok.Getter;
@@ -12,17 +12,17 @@ import java.util.List;
 @Setter
 public class Bishop extends Pieces {
 
-    public Bishop(boolean color, int x, int y){
-        super(color, new Coordinates(x,y));
+    public Bishop(boolean color, int x, int y, String name){
+        super(color, new Coordinates(x,y), name);
         super.setUnicode(TransversalMethod.valueOfPieces(color,this.getClass()));
     }
 
     @Override
     public void move(String yParam, String xParam, ChessBoard chess){
-        int y = TransversalMethod.translateCoord(yParam);
-        int x = TransversalMethod.translateCoord(xParam);
+        int y = TransversalMethod.translateCoordinates(yParam);
+        int x = TransversalMethod.translateCoordinates(xParam);
         Coordinates currentCoord = new Coordinates(x,y);
-        for(Coordinates coord : verifyAvailability(chess).getAllBishops()){
+        for(Coordinates coord : verifyAvailability(chess).getAllPieces()){
             if(coord.equals(currentCoord)){
                 super.movePieces(currentCoord,chess);
             }
@@ -64,7 +64,7 @@ public class Bishop extends Pieces {
         List<Coordinates> availableHighLeftDiagonals = super.iterateOverEachDirectionAndVerify(availableBishops.getAvailableHighLeftDiagonal(), chess);
         List<Coordinates> availableLowRightDiagonals = super.iterateOverEachDirectionAndVerify(availableBishops.getAvailableLowRightDiagonal(), chess);
         List<Coordinates> availableHighRightDiagonals = super.iterateOverEachDirectionAndVerify(availableAllShots().getAvailableHighRightDiagonal(), chess);
-        availableBishops.setAllBishops(availableBishops.fusion(availableLowLeftDiagonals, availableHighLeftDiagonals,
+        availableBishops.setAllPieces(availableBishops.fusion(availableLowLeftDiagonals, availableHighLeftDiagonals,
                 availableLowRightDiagonals, availableHighRightDiagonals));
 
         return availableBishops;

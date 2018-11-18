@@ -1,7 +1,6 @@
 package entities.tools;
 
-import entities.pieces.availables.Coordinates;
-
+import entities.chess.Coordinates;
 import java.util.ArrayList;
 
 public class CoordinatesArray extends ArrayList<Coordinates> {

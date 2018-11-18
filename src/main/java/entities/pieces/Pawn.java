@@ -1,7 +1,7 @@
 package entities.pieces;
 
 import entities.chess.ChessBoard;
-import entities.pieces.availables.Coordinates;
+import entities.chess.Coordinates;
 import entities.pieces.availables.AvailablePawns;
 import entities.tools.TransversalMethod;
 import lombok.Getter;
@@ -14,18 +14,18 @@ public class Pawn extends Pieces {
 
     private boolean isFirstShot;
 
-    public Pawn(boolean color, int x, int y){
-        super(color, new Coordinates(x,y));
+    public Pawn(boolean color, int x, int y, String name){
+        super(color, new Coordinates(x,y), name);
         super.setUnicode(TransversalMethod.valueOfPieces(color,this.getClass()));
         this.isFirstShot = true;
     }
 
     @Override
     public void move(String yParam, String xParam, ChessBoard chess){
-        int y = TransversalMethod.translateCoord(yParam);
-        int x = TransversalMethod.translateCoord(xParam);
+        int y = TransversalMethod.translateCoordinates(yParam);
+        int x = TransversalMethod.translateCoordinates(xParam);
         Coordinates currentCoordinates= new Coordinates(x,y);
-        for(Coordinates coordinates : verifyAvailability(chess).getAllPawns()){
+        for(Coordinates coordinates : verifyAvailability(chess).getAllPieces()){
             if(coordinates.equals(currentCoordinates)){
                 super.movePieces(coordinates,chess);
                 this.isFirstShot = false;
@@ -57,8 +57,8 @@ public class Pawn extends Pieces {
                iter.remove();
             }
         }
-        availablePawns.getAllPawns().addAll(availablePawns.getDiagonals());
-        availablePawns.getAllPawns().addAll(availablePawns.getStraightsAhead());
+        availablePawns.getAllPieces().addAll(availablePawns.getDiagonals());
+        availablePawns.getAllPieces().addAll(availablePawns.getStraightsAhead());
         return availablePawns;
     };
 

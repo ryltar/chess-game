@@ -1,7 +1,7 @@
 package entities.pieces;
 
 import entities.chess.ChessBoard;
-import entities.pieces.availables.Coordinates;
+import entities.chess.Coordinates;
 import entities.pieces.availables.AvailablePawns;
 import entities.tools.TransversalMethod;
 import lombok.Getter;
@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 public class Queen extends Pieces {
 
-    public Queen(boolean color, int x, int y){
-        super(color, new Coordinates(x,y));
+    public Queen(boolean color, int x, int y, String name){
+        super(color, new Coordinates(x,y), name);
         super.setUnicode(TransversalMethod.valueOfPieces(color,this.getClass()));
     }
 

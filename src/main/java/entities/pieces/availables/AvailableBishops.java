@@ -1,5 +1,6 @@
 package entities.pieces.availables;
 
+import entities.chess.Coordinates;
 import entities.tools.CoordinatesArray;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,13 +19,5 @@ public class AvailableBishops extends AvailablePieces {
     private List<Coordinates> availableHighRightDiagonal = new CoordinatesArray();
     private List<Coordinates> availableLowLeftDiagonal = new CoordinatesArray();
     private List<Coordinates> availableHighLeftDiagonal = new CoordinatesArray();
-    private List<Coordinates> allBishops = new CoordinatesArray();
 
-    public AvailableBishops(List<Coordinates> availableLowRightDiagonal, List<Coordinates> availableHighRightDiagonal,
-                            List<Coordinates> availableLowLeftDiagonal, List<Coordinates> availableHighLeftDiagonal ) {
-        this.availableLowRightDiagonal = availableLowRightDiagonal;
-        this.availableHighRightDiagonal = availableHighRightDiagonal;
-        this.availableLowLeftDiagonal = availableLowLeftDiagonal;
-        this.availableHighLeftDiagonal = availableHighLeftDiagonal;
-    }
 }

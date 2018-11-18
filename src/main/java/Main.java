@@ -1,4 +1,5 @@
 import entities.chess.ChessBoard;
+import entities.chess.GameManager;
 import entities.pieces.Pawn;
 import entities.pieces.Pieces;
 
@@ -6,6 +7,7 @@ public class Main {
 
     public static void main(String[] args)
     {
+        /**
         ChessBoard board = new ChessBoard();
         board.printChessBoard();
         Pieces pi = board.getChessBoard()[6][0];
@@ -28,5 +30,10 @@ public class Main {
         test4.move("D", "1", board);
         test5.move("C", "3", board);
         board.printChessBoard();
+         */
+
+        GameManager game = new GameManager();
+        game.main();
+
     }
 }

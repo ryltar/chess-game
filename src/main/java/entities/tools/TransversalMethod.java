@@ -38,13 +38,23 @@ public class TransversalMethod {
         throw new IllegalArgumentException("There is no unicode character available for " + pieces.getSimpleName());
     }
 
-    public static int translateCoord(String coord) throws IllegalArgumentException{
+    public static int translateCoordinates(String coord) throws IllegalArgumentException{
         for(Map.Entry<String, Integer> entry : translator.entrySet()) {
             String key = entry.getKey();
             int value = entry.getValue();
             if(coord.toUpperCase().equals(key.toUpperCase())) return value;
         }
         throw new IllegalArgumentException("The coordinates are not on the chessboard! please try again");
+    }
+
+    public static String[] translateInputPlayer(String tmp) throws IllegalArgumentException{
+        // TODO Problème sur le trim
+        String[] elems = tmp.toUpperCase().replaceAll("\\s", "").split(",");
+        if(elems.length != 1){
+            return elems;
+        }else{
+            throw new IllegalArgumentException("Plea");
+        }
     }
 
 }

@@ -1,13 +1,15 @@
 package entities.chess;
 
+import entities.pieces.King;
 import entities.pieces.Pieces;
 import entities.players.Player;
+import entities.tools.TransversalMethod;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Scanner;
+import java.util.*;
 
 @Getter
 @Setter
@@ -16,21 +18,47 @@ import java.util.Scanner;
 public class GameManager {
     boolean finished = false;
     ChessBoard chessBoard = new ChessBoard();
-    Player playerBlack = new Player( chessBoard.getBlackPieces(), false);
+    Player playerBlack = new Player(chessBoard.getBlackPieces(), false);
     Player playerWhite = new Player(chessBoard.getWhitePieces(), true);
+    List<Player> players = new ArrayList<Player>(){
+        {
+            add(playerBlack);
+            add(playerWhite);
+        }
+    };
 
-    void gameLoop(){
-        while (!finished){
-            Scanner sc = new Scanner(System.in);
-            System.out.print("The first player: enter a move");
-            int x = sc.nextInt();
-            int y = sc.nextInt();
-            Pieces pieces = this.chessBoard.getChessBoard()[x][y];
+    private void playerPlay(Player player){
+        this.getChessBoard().printChessBoard();
+        String color = (player.isColor()) ? "WHITE" : "BLACK";
+        Scanner sc = new Scanner(System.in);
+        System.out.print(color+" player: enter a move");
+        String line = sc.nextLine();
+        String[] input = TransversalMethod.translateInputPlayer(line);
+        Optional<Pieces> pieces;
+        pieces = player.isColor()? this.playerWhite.getPieces().stream().filter(x -> x.getName().equals(input[0])).findFirst() :
+                this.playerBlack.getPieces().stream().filter(x -> x.getName().equals(input[0])).findFirst();
+        Pieces piece = pieces.orElse(null);
+        Optional<Pieces> king = player.getKing();
+        boolean chess = ((King) king.orElse(null)).canBeTaken(this.chessBoard);
+        Coordinates saveCoordinates = null;
+        try{
+            if(piece != null) saveCoordinates = piece.getCoordinates().clone();
+        }catch(CloneNotSupportedException e){
+            e.printStackTrace();
+        }
+        piece.move(String.valueOf(input[1].charAt(0)), String.valueOf(input[1].charAt(1)), chessBoard);
+        if (chess) piece.movePieces(saveCoordinates, chessBoard);
+        this.getChessBoard().printChessBoard();
+    }
+
+    private void gameLoop(){
+        while(!finished){
+            Collections.reverse(players);
+            this.playerPlay(players.get(0));
         }
     }
 
-    void main(){
-
-        System.out.print("");
+    public void main(){
+        this.gameLoop();
     }
 }
