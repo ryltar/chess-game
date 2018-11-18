@@ -28,7 +28,6 @@ public class GameManager {
     };
 
     private void playerPlay(Player player){
-        this.getChessBoard().printChessBoard();
         String color = (player.isColor()) ? "WHITE" : "BLACK";
         Scanner sc = new Scanner(System.in);
         System.out.print(color+" player: enter a move");
@@ -37,23 +36,33 @@ public class GameManager {
         Optional<Pieces> pieces;
         pieces = player.isColor()? this.playerWhite.getPieces().stream().filter(x -> x.getName().equals(input[0])).findFirst() :
                 this.playerBlack.getPieces().stream().filter(x -> x.getName().equals(input[0])).findFirst();
-        Pieces piece = pieces.orElse(null);
-        Optional<Pieces> king = player.getKing();
-        boolean chess = ((King) king.orElse(null)).canBeTaken(this.chessBoard);
+        Pieces piece;
+        if(pieces.isPresent()){
+            piece = pieces.get();
+            piece.move(String.valueOf(input[1].charAt(0)), String.valueOf(input[1].charAt(1)), chessBoard);
+        }else{
+            System.err.print("Try again, this piece doesn't exist on the chessBoard");
+            playerPlay(player);
+            return;
+        }
+        Optional<Pieces> kingOpt = player.getKing();
+        boolean chess = false;
+        if(kingOpt.isPresent()){
+            chess = ((King)kingOpt.get()).canBeTaken(chessBoard);
+        }
         Coordinates saveCoordinates = null;
         try{
-            if(piece != null) saveCoordinates = piece.getCoordinates().clone();
+            saveCoordinates = piece.getCoordinates().clone();
         }catch(CloneNotSupportedException e){
             e.printStackTrace();
         }
-        piece.move(String.valueOf(input[1].charAt(0)), String.valueOf(input[1].charAt(1)), chessBoard);
         if (chess) piece.movePieces(saveCoordinates, chessBoard);
-        this.getChessBoard().printChessBoard();
     }
 
     private void gameLoop(){
         while(!finished){
             Collections.reverse(players);
+            this.getChessBoard().printChessBoard();
             this.playerPlay(players.get(0));
         }
     }

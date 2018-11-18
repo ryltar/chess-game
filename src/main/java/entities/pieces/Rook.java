@@ -20,18 +20,6 @@ public class Rook extends Pieces {
     }
 
     @Override
-    public void move(String yParam, String xParam, ChessBoard chess){
-        int y = TransversalMethod.translateCoordinates(yParam);
-        int x = TransversalMethod.translateCoordinates(xParam);
-        Coordinates currentCoord = new Coordinates(x,y);
-        for(Coordinates coord : verifyAvailability(chess).getAllPieces()){
-            if(coord.equals(currentCoord)){
-                super.movePieces(coord,chess);
-            }
-        }
-    }
-
-    @Override
     public AvailableRooks availableAllShots(){
         AvailableRooks availableRooks = new AvailableRooks();
         int tmp = super.getCoordinates().getY();

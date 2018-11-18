@@ -17,11 +17,6 @@ public class Queen extends Pieces {
     }
 
     @Override
-    public void move(String xParam, String yParam, ChessBoard chess){
-
-    };
-
-    @Override
     public AvailablePawns availableAllShots() {
         return null;
     }

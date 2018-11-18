@@ -21,31 +21,18 @@ public class Pawn extends Pieces {
     }
 
     @Override
-    public void move(String yParam, String xParam, ChessBoard chess){
-        int y = TransversalMethod.translateCoordinates(yParam);
-        int x = TransversalMethod.translateCoordinates(xParam);
-        Coordinates currentCoordinates= new Coordinates(x,y);
-        for(Coordinates coordinates : verifyAvailability(chess).getAllPieces()){
-            if(coordinates.equals(currentCoordinates)){
-                super.movePieces(coordinates,chess);
-                this.isFirstShot = false;
-            }
-        }
-    }
-
-    @Override
     public AvailablePawns verifyAvailability(ChessBoard chess){
         AvailablePawns availablePawns = availableAllShots();
         Iterator<Coordinates> iter = availablePawns.getStraightsAhead().iterator();
         boolean frontMove;
         while(iter.hasNext()){
-            Coordinates coord = iter.next();
+            Coordinates coordinates = iter.next();
             frontMove = false;
-            if((this.isColor() && coord.getX() < this.getCoordinates().getX()) ||
-                    (!this.isColor() && coord.getX() > this.getCoordinates().getX())){
+            if((this.isColor() && coordinates.getX() < this.getCoordinates().getX()) ||
+                    (!this.isColor() && coordinates.getX() > this.getCoordinates().getX())){
                 frontMove = true;
             }
-            if(chess.getChessBoard()[coord.getX()][coord.getY()] != null || !frontMove){
+            if(chess.getChessBoard()[coordinates.getX()][coordinates.getY()] != null || !frontMove){
                 iter.remove();
             }
         }

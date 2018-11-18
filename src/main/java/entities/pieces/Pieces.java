@@ -3,6 +3,7 @@ package entities.pieces;
 import entities.chess.ChessBoard;
 import entities.chess.Coordinates;
 import entities.pieces.availables.AvailablePieces;
+import entities.tools.TransversalMethod;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,9 +31,18 @@ public abstract class Pieces {
         return unicode;
     }
 
-    public abstract void move(String x, String y, ChessBoard chess);
-
     public abstract AvailablePieces verifyAvailability(ChessBoard chess);
+
+    public void move(String yParam, String xParam, ChessBoard chess){
+        int y = TransversalMethod.translateCoordinates(yParam);
+        int x = TransversalMethod.translateCoordinates(xParam);
+        Coordinates currentCoord = new Coordinates(x,y);
+        for(Coordinates coord : verifyAvailability(chess).getAllPieces()){
+            if(coord.equals(currentCoord)){
+                this.movePieces(currentCoord,chess);
+            }
+        }
+    };
 
     public abstract AvailablePieces  availableAllShots();
 

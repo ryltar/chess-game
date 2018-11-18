@@ -20,18 +20,6 @@ public class King extends Pieces {
     }
 
     @Override
-    public void move(String yParam, String xParam, ChessBoard chess){
-        int y = TransversalMethod.translateCoordinates(yParam);
-        int x = TransversalMethod.translateCoordinates(xParam);
-        Coordinates currentCoordinates = new Coordinates(x,y);
-        for(Coordinates coordinates : verifyAvailability(chess).getAllPieces()){
-            if(coordinates.equals(currentCoordinates)){
-                super.movePieces(coordinates,chess);
-            }
-        }
-    }
-
-    @Override
     public AvailableKings availableAllShots(){
         AvailableKings availableKings = new AvailableKings();
         availableKings.getAllPieces().add(new Coordinates(super.getCoordinates().getX()+1, super.getCoordinates().getY()));
