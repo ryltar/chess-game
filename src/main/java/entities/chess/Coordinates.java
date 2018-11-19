@@ -13,11 +13,19 @@ public class Coordinates implements Cloneable {
     private int x;
     private int y;
 
+    /**
+     * method which return string representation of the coordinates
+     * @return String
+     */
     @Override
     public String toString(){
         return "("+this.x+","+this.y+")";
     }
 
+    /**
+     * Method which allow us to clone a coordinate object
+     * @return Coordinates
+     */
     @Override
     public Coordinates clone() throws CloneNotSupportedException {
         return (Coordinates) super.clone();

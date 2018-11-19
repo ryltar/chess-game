@@ -17,7 +17,6 @@ import java.util.List;
 public abstract class Pieces {
     private boolean color;
     private String unicode;
-    private Class currentClass;
     private Coordinates coordinates;
     private String name;
 

@@ -27,6 +27,9 @@ public class GameManager {
         }
     };
 
+    /**
+     * this method contains all we need for a round of play
+     */
     private void playerPlay(Player player){
         String color = (player.isColor()) ? "WHITE" : "BLACK";
         Scanner sc = new Scanner(System.in);
@@ -59,6 +62,9 @@ public class GameManager {
         if (chess) piece.movePieces(saveCoordinates, chessBoard);
     }
 
+    /**
+     * Game loop
+     */
     private void gameLoop(){
         while(!finished){
             Collections.reverse(players);
@@ -67,6 +73,9 @@ public class GameManager {
         }
     }
 
+    /**
+     * This method calls the game loop
+     */
     public void main(){
         this.gameLoop();
     }

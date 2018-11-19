@@ -14,6 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChessBoard {
+    /**
+     * Black pieces from the chessboard
+     */
     private List<Pieces> blackPieces = new ArrayList<Pieces>(){
         {
             add(new Rook(false, 0, 0, "BR1"));
@@ -35,6 +38,9 @@ public class ChessBoard {
         }
     };
 
+    /**
+     * White pieces list from the chessboard
+     */
     private List<Pieces> whitePieces = new ArrayList<Pieces>(){
         {
             add(new Pawn(true,6,0, "WP1"));
@@ -56,6 +62,9 @@ public class ChessBoard {
         }
     };
 
+    /**
+     * feed the chessboard
+     */
     private Pieces[][] chessBoard = {
             {blackPieces.get(0), blackPieces.get(1), blackPieces.get(2), blackPieces.get(3),
                     blackPieces.get(4), blackPieces.get(5), blackPieces.get(6), blackPieces.get(7)},
@@ -70,7 +79,9 @@ public class ChessBoard {
             {whitePieces.get(8), whitePieces.get(9), whitePieces.get(10), whitePieces.get(11),
                     whitePieces.get(12), whitePieces.get(13), whitePieces.get(14), whitePieces.get(15)}};
 
-
+    /**
+     * display the chessboard
+     */
     public void printChessBoard(){
         System.out.println(" ---------------------------------");
         for(int i = 0 ; i < this.chessBoard.length ; i++) {
