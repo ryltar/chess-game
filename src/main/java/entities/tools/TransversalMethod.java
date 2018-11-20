@@ -27,6 +27,10 @@ public class TransversalMethod {
 
     };
 
+    /**
+     * map a piece with the unicode associated
+     *
+     */
     public static String valueOfPieces(boolean color, Class pieces) throws IllegalArgumentException {
         for (UnicodeColorEnum value : UnicodeColorEnum.values()) {
             boolean colorEnum = value.isColor();
@@ -38,6 +42,10 @@ public class TransversalMethod {
         throw new IllegalArgumentException("There is no unicode character available for " + pieces.getSimpleName());
     }
 
+    /**
+     * method to translate input player to arrayList Coordinates
+     *
+     */
     public static int translateCoordinates(String coord) throws IllegalArgumentException{
         for(Map.Entry<String, Integer> entry : translator.entrySet()) {
             String key = entry.getKey();
@@ -47,6 +55,10 @@ public class TransversalMethod {
         throw new IllegalArgumentException("The coordinates are not on the chessboard! please try again");
     }
 
+    /**
+     * split input player
+     *
+     */
     public static String[] translateInputPlayer(String tmp) throws IllegalArgumentException{
         // TODO Problème sur le trim
         String[] elems = tmp.toUpperCase().replaceAll("\\s", "").split(",");

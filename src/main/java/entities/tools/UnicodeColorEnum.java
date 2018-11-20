@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+/*
+ * Enum with all unicode of pieces
+ *
+ */
 public enum UnicodeColorEnum {
 
     Bishop_white(true, "\u2657", Bishop.class),

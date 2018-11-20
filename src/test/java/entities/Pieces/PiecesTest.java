@@ -7,6 +7,8 @@ import entities.players.Player;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Optional;
+
 public class PiecesTest {
 
     private ChessBoard chessBoard = new ChessBoard();
@@ -58,5 +60,14 @@ public class PiecesTest {
         game.playerPlay(playerWhite, input);
         Assert.assertNotEquals(game.getChessBoard().getChessBoard()[5][0], null);
     }
+
+    @Test
+    public void playerTest(){
+        Player playerWhite = new Player(chessBoard.getWhitePieces(), true);
+        Optional<Pieces> pieces = playerWhite.getKing();
+        Assert.assertTrue(pieces.isPresent());
+    }
+
+
 
 }
