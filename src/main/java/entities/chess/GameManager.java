@@ -28,14 +28,20 @@ public class GameManager {
     };
 
     /**
-     * this method contains all we need for a round of play
+     * function that allows us to ask to choose a pawn
      */
-    private void playerPlay(Player player){
+    private String[] askPawn(Player player){
         String color = (player.isColor()) ? "WHITE" : "BLACK";
         Scanner sc = new Scanner(System.in);
         System.out.print(color+" player: enter a move");
         String line = sc.nextLine();
-        String[] input = TransversalMethod.translateInputPlayer(line);
+        return TransversalMethod.translateInputPlayer(line);
+    }
+
+    /**
+     * this method contains all we need for a round of play
+     */
+    public void playerPlay(Player player, String[] input){
         Optional<Pieces> pieces;
         pieces = player.isColor()? this.playerWhite.getPieces().stream().filter(x -> x.getName().equals(input[0])).findFirst() :
                 this.playerBlack.getPieces().stream().filter(x -> x.getName().equals(input[0])).findFirst();
@@ -45,7 +51,8 @@ public class GameManager {
             piece.move(String.valueOf(input[1].charAt(0)), String.valueOf(input[1].charAt(1)), chessBoard);
         }else{
             System.err.print("Try again, this piece doesn't exist on the chessBoard");
-            playerPlay(player);
+
+            playerPlay(player, askPawn(player));
             return;
         }
         Optional<Pieces> kingOpt = player.getKing();
@@ -65,11 +72,11 @@ public class GameManager {
     /**
      * Game loop
      */
-    private void gameLoop(){
+    public void gameLoop(){
         while(!finished){
             Collections.reverse(players);
             this.getChessBoard().printChessBoard();
-            this.playerPlay(players.get(0));
+            this.playerPlay(players.get(0), askPawn(players.get(0)));
         }
     }
 
